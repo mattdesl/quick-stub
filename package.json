@@ -1,0 +1,59 @@
+{
+  "name": "@mattdesl/quick-stub",
+  "version": "1.0.0",
+  "description": "some personalized file stubbing tools",
+  "main": "index.js",
+  "license": "MIT",
+  "author": {
+    "name": "Matt DesLauriers",
+    "email": "dave.des@gmail.com",
+    "url": "https://github.com/mattdesl"
+  },
+  "bin": {
+    "quick-build": "./bin/build.js",
+    "quick-budo": "./bin/budo.js",
+    "quick-test": "./bin/test.js",
+    "quick-html": "./bin/html.js",
+    "quick-bin": "./bin/bin.js"
+  },
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "closest-package": "^1.0.0",
+    "inquirer": "^0.8.3",
+    "install-if-needed": "^1.0.2",
+    "jsesc": "^0.5.0",
+    "minimist": "^1.1.1",
+    "minstache": "^1.2.0",
+    "mkdirp": "^0.5.0",
+    "read-closest-package": "^1.0.1",
+    "read-json": "^0.1.0",
+    "require-package-name": "^2.0.0",
+    "require-path-relative": "^1.0.1",
+    "variable-name": "0.0.1",
+    "xtend": "^4.0.0"
+  },
+  "devDependencies": {
+    "faucet": "0.0.1",
+    "tape": "^4.0.0"
+  },
+  "keywords": [
+    "tool",
+    "cli",
+    "script",
+    "scaffold",
+    "helper",
+    "file",
+    "stub"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mattdesl/quick-stub.git"
+  },
+  "homepage": "https://github.com/mattdesl/quick-stub",
+  "bugs": {
+    "url": "https://github.com/mattdesl/quick-stub/issues"
+  },
+  "scripts": {
+    "test": "node test.js"
+  }
+}
