@@ -2,37 +2,76 @@
 
 [![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
 
-Stubs some personalized files and configurations for building modules. This is experimental, and may eventually become a more formalized tool for others to build their own scaffolding CLIs.
+Some personalized scaffolding tools I am using to automate my workflow. 
 
-**Note:** This is mostly a proof-of-concept. 
+This is an experiment / proof of concept. One day it may grow into a generalized tool for scaffolding modules, apps, components, etc. Feel free to fork or post issues if you want to discuss.
 
 ## Usage
 
-Install the script globally to access its bins:
+Install the module globally to access all the bins. 
 
 ```sh
 npm install @mattdesl/quick-stub -g
 ```
 
-Then run the desired script. Examples:
+Now any of the scripts can be run from the command-line. Run them inside a module folder with a `package.json` file. Example:
 
 ```sh
-#write a test file
-quick-test tests/test.js
+# make a module
+mkdir my-module
+cd my-module
+npm init
 
-#add a stub bin/index.js, install minimist
-quick-bin --minimist
-
-#add browserify to your package.json script
-quick-build --outfile demo/bundle.js
+# add a test and install its dependencies
+quick-test tests/index.js
 ```
 
-Scripts:
+The above installs `tape` and `faucet` and writes the following:
 
+```js
+var myModule = require('../')
+var test = require('tape')
+
+test('your package description', function(t) {
+
+  t.end()
+})
+```
+
+It also adds the following to your package.json:
+
+```json
+"scripts": {
+  "test": "node test/index.js | faucet"
+}
+```
+
+All scripts listed below. As you can see they are highly personalized to my workflow.
+
+- [quick-test](#test)
 - [quick-build](#build)
 - [quick-bin](#bin)
 - [quick-html](#html)
-- [quick-test](#test)
+- [quick-budo](#budo)
+
+### test
+
+Installs `tape` and `tap-spec` as dependencies, stubs out a [test file](templates/test.js).
+
+Usage: 
+
+```sh
+quick-test [entry] [opt]
+  [entry]    the file to write, default test.js
+  -f         force overwrite (no prompt)
+```
+
+Examples:
+
+```sh
+quick-test
+quick-test tests/index.js
+```
 
 ### build
 
@@ -66,39 +105,34 @@ Options:
 ```
 quick-bin [filename] [opt]
   [filename]      the file name, default index.js
-  --minimist, -m  include minimist as a dependency
+  --minimist, -m  include minimist dependency + code
   --dir           the directory, default 'bin'
 ```
 
+With `--minimist` the file includes [arg parsing](templates/bin-minimist.js).
+
 ### html
 
-Stubs out a simple HTML5 template at the given file, or defaults to `index.html`. 
+Stubs out a simple [HTML5 template](templates/index.html) at the given file, or defaults to `index.html`. 
 
 ```sh
 quick-html [entry]
   [entry]    the output file, default index.html
 ```
 
-### test
+### budo
+
+Add [budo](https://github.com/mattdesl/budo) to your package.json.
 
 ```sh
-quick-test [entry] [opt]
-  [entry]    the file to write, default test.js
-  -f         force overwrite (no prompt)
+quick-budo test.js --prod
 ```
 
-Installs `tape` and `tap-spec` as dependencies, stubs out a test file like this:
+The above command installs budo, garnish, babelify, errorify and adds the following script:
 
-```js
-var quickStub = require('../')
-var test = require('tape')
-
-test('some personalized file stubbing tools', function(t) {
-  
-  t.end()
-})
 ```
-
+"start": "budo test.js -t babelify -p errorify | garnish"
+```
 ## License
 
 MIT, see [LICENSE.md](http://github.com/mattdesl/quick-stub/blob/master/LICENSE.md) for details.
