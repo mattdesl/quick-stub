@@ -56,7 +56,7 @@ All scripts listed below. As you can see they are highly personalized to my work
 
 ### test
 
-Installs `tape` and `tap-spec` as dependencies, stubs out a [test file](templates/test.js).
+Installs `tape` and `faucet` as dependencies, stubs out a [test file](templates/test.js), and adds a `test` script to your package.json.
 
 Usage: 
 
