@@ -5,22 +5,28 @@ var entry = argv._[0] || 'index.js:bundle.js'
 var deps = ['budo', 'garnish']
 var opts = []
 var prod = argv.prod || argv.p
+opts.push('--live')
+opts.push('--verbose')
+opts.push('--')
+
 if (argv.babel || prod) {
   opts.push('-t', 'babelify')
   deps.push('babelify')
+}
+if (argv.auto) {
+  opts.push('-t [ installify --save ]')
+  deps.push('installify')
 }
 if (argv.errorify || prod) {
   opts.push('-p', 'errorify')
   deps.push('errorify')
 }
 
-opts.push('--live')
-opts.push('--verbose')
 opts = opts.join(' ')
 
-var cmd = "budo "+entry+" "+opts+" | garnish"
+var cmd = 'budo ' + entry + ' ' + opts + ' | garnish'
 
-console.log('adding "start" script to package.json:\n  '+cmd)
+console.log('adding "start" script to package.json:\n  ' + cmd)
 require('../')({
   devDependencies: deps,
   packageTransform: {
