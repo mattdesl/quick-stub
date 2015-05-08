@@ -1,6 +1,6 @@
 {
   "name": "@mattdesl/quick-stub",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "some personalized file stubbing tools",
   "main": "index.js",
   "license": "MIT",
