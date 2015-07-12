@@ -56,6 +56,6 @@
     "url": "https://github.com/mattdesl/quick-stub/issues"
   },
   "scripts": {
-    "test": "node test.js"
+    "test": "node tmp/index.js | faucet"
   }
 }
