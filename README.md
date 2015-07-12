@@ -53,6 +53,7 @@ All scripts listed below. As you can see they are highly personalized to my work
 - [quick-bin](#bin)
 - [quick-html](#html)
 - [quick-budo](#budo)
+- [quick-component](#component)
 
 ### test
 
@@ -133,6 +134,25 @@ The above command installs budo, garnish, babelify, errorify and adds the follow
 ```
 "start": "budo test.js -t babelify -p errorify | garnish"
 ```
+
+### component
+
+Create a folder with a script, css and template file.
+
+```sh
+quick-component ./src/components/my-comp
+```
+
+Options:
+
+```
+quick-component [path] [opts]
+  [path]      the folder that will be created
+  --css, -c   the name for the style file (default style.css)
+  --script, -s   the name for the script file (default index.js)
+  --template, -t   the name for the template file (default template.html)
+```
+
 ## License
 
 MIT, see [LICENSE.md](http://github.com/mattdesl/quick-stub/blob/master/LICENSE.md) for details.
