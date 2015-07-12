@@ -25,6 +25,7 @@
     "minimist": "^1.1.1",
     "minstache": "^1.2.0",
     "mkdirp": "^0.5.0",
+    "rc": "^1.0.3",
     "read-closest-package": "^1.0.1",
     "read-json": "^0.1.0",
     "require-package-name": "^2.0.0",

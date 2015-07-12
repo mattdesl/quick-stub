@@ -7,7 +7,9 @@ var opts = []
 var prod = argv.prod || argv.p
 opts.push('--live')
 opts.push('--verbose')
-opts.push('--')
+
+if (prod || argv.babel || argv.auto || argv.errorify)
+  opts.push('--')
 
 if (argv.babel || prod) {
   opts.push('-t', 'babelify')
