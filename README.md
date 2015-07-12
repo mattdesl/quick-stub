@@ -153,6 +153,18 @@ quick-component [path] [opts]
   --template, -t   the name for the template file (default template.html)
 ```
 
+## rc configuration
+
+You can add a `.quick-stubrc` file in your `$HOME` directory to change the command that is run with `npm install`. For example, to [npm-install-analytics](https://github.com/mattdesl/npm-install-analytics):
+
+```json
+{
+  "command": "npm-install-analytics"
+}
+```
+
+Other configurations may be added at a later point.
+
 ## License
 
 MIT, see [LICENSE.md](http://github.com/mattdesl/quick-stub/blob/master/LICENSE.md) for details.
