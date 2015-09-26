@@ -2,6 +2,7 @@
 var argv = require('minimist')(process.argv.slice(2))
 var path = require('path')
 
+var defaultOutput = 'test.js'
 var output = argv._[0] || defaultOutput
 if (output && !path.extname(output))  //supprt "quick-test test/"
   output = path.join(output, defaultOutput)

@@ -6,10 +6,10 @@ var deps = ['budo', 'garnish']
 var opts = []
 var prod = argv.prod || argv.p
 opts.push('--live')
-opts.push('--verbose')
 
-if (prod || argv.babel || argv.auto || argv.errorify)
+if (prod || argv.babel || argv.auto) {
   opts.push('--')
+}
 
 if (argv.babel || prod) {
   opts.push('-t', 'babelify')
@@ -18,10 +18,6 @@ if (argv.babel || prod) {
 if (argv.auto) {
   opts.push('-t [ installify --save ]')
   deps.push('installify')
-}
-if (argv.errorify || prod) {
-  opts.push('-p', 'errorify')
-  deps.push('errorify')
 }
 
 opts = opts.join(' ')
