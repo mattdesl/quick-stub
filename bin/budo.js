@@ -2,7 +2,7 @@
 var argv = require('minimist')(process.argv.slice(2))
 
 var entry = argv._[0] || 'index.js:bundle.js'
-var deps = ['budo', 'garnish']
+var deps = ['budo']
 var opts = []
 var prod = argv.prod || argv.p
 opts.push('--live')
@@ -22,7 +22,7 @@ if (argv.auto) {
 
 opts = opts.join(' ')
 
-var cmd = 'budo ' + entry + ' ' + opts + ' | garnish'
+var cmd = 'budo ' + entry + ' ' + opts
 
 console.log('adding "start" script to package.json:\n  ' + cmd)
 require('../')({
