@@ -54,7 +54,6 @@ All scripts listed below. As you can see they are highly personalized to my work
 - [quick-html](#html)
 - [quick-budo](#budo)
 - [quick-component](#component)
-- [quick-babelify](#babelify)
 
 ### test
 
@@ -127,13 +126,62 @@ quick-html [entry]
 Add [budo](https://github.com/mattdesl/budo) to your package.json.
 
 ```sh
-quick-budo test.js --prod
+quick-budo
 ```
 
-The above command installs budo, garnish, babelify, errorify and adds the following script:
+Result in package.json:
 
 ```
-"start": "budo test.js -t babelify -p errorify | garnish"
+"start": "budo index.js:bundle.js --live"
+```
+
+You can specify `-b` or `--babel` for babelify, and `-a` or `--auto` for installify:
+
+```sh
+# babelify + installify
+quick-budo demo.js:bundle.js -ab
+```
+
+The above command installs budo and sets up the following:
+
+```
+"start": "budo demo.js:bundle.js --live -- -t babelify -t [ installify --save ]"
+```
+
+If babel is specified, the following `.babelrc` file is also written:
+
+```js
+{
+  presets: [ "es2015" ]
+}
+```
+
+Also see [babelify](#babelify) if you would rather have it listed as a package.json configuration (so you don't need to repeat the flag for `build` scripts).
+
+### babelify
+
+Adds ES2015 to your browserify project:
+
+```sh
+quick-babelify
+```
+
+Installs `babelify` and `babel-preset-es2015`, then writes a `.babelrc` like this:
+
+```js
+{
+  presets: [ "es2015" ]
+}
+```
+
+Also adds babelify as a browserify config to your package.json:
+
+```json
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  }
 ```
 
 ### component
@@ -152,36 +200,6 @@ quick-component [path] [opts]
   --css, -c   the name for the style file (default style.css)
   --script, -s   the name for the script file (default index.js)
   --template, -t   the name for the template file (default template.html)
-```
-
-### babelify
-
-Add ES2015 support to your browserify project.
-
-```sh
-# simple setup, --save-dev
-quick-babelify
-
-# "browserify" package.json config, --save
-quick-babelify -p
-```
-
-Installs `babelify` and `babel-preset-es2015` and saves them to `devDependencies`. Writes a `.babelrc` file like this:
-
-```js
-{
-  presets: [ "es2015" ]
-}
-```
-
-If `-p` or `--package` is specified, it will install the tools as `"dependencies"` instead, and update your `package.json` to include:
-
-```json
-  "browserify": {
-    "transform": [
-      "babelify"
-    ]
-  }
 ```
 
 ## rc configuration
