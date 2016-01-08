@@ -15,7 +15,8 @@
     "quick-budo": "./bin/budo.js",
     "quick-test": "./bin/test.js",
     "quick-html": "./bin/html.js",
-    "quick-bin": "./bin/bin.js"
+    "quick-bin": "./bin/bin.js",
+    "quick-babelify": "./bin/babelify.js"
   },
   "dependencies": {
     "chalk": "^1.0.0",

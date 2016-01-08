@@ -54,6 +54,7 @@ All scripts listed below. As you can see they are highly personalized to my work
 - [quick-html](#html)
 - [quick-budo](#budo)
 - [quick-component](#component)
+- [quick-babelify](#babelify)
 
 ### test
 
@@ -151,6 +152,36 @@ quick-component [path] [opts]
   --css, -c   the name for the style file (default style.css)
   --script, -s   the name for the script file (default index.js)
   --template, -t   the name for the template file (default template.html)
+```
+
+### babelify
+
+Add ES2015 support to your browserify project.
+
+```sh
+# simple setup, --save-dev
+quick-babelify
+
+# "browserify" package.json config, --save
+quick-babelify -p
+```
+
+Installs `babelify` and `babel-preset-es2015` and saves them to `devDependencies`. Writes a `.babelrc` file like this:
+
+```js
+{
+  presets: [ "es2015" ]
+}
+```
+
+If `-p` or `--package` is specified, it will install the tools as `"dependencies"` instead, and update your `package.json` to include:
+
+```json
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  }
 ```
 
 ## rc configuration
