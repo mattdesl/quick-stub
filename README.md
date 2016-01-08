@@ -53,6 +53,7 @@ All scripts listed below. As you can see they are highly personalized to my work
 - [quick-bin](#bin)
 - [quick-html](#html)
 - [quick-budo](#budo)
+- [quick-babelify](#babelify)
 - [quick-component](#component)
 
 ### test
