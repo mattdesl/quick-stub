@@ -77,11 +77,11 @@ quick-test tests/index.js
 
 ### build
 
-Installs `browserify` and `uglify-js`, then adds a `"build"` script to your package.json that looks like this:
+Installs `browserify` and `uglify-js`, then adds a `"bundle"` script to your package.json that looks like this:
 
 ```
 "scripts": {
-  "build": "browserify index.js | uglifyjs -cm > bundle.js"
+  "bundle": "browserify src/index.js | uglifyjs -cm > app/bundle.js"
 }
 ```
 
@@ -89,8 +89,9 @@ Options:
 
 ```
 quick-build [entry] [opt]
-  [entry]         the entry to build, default index.js
+  [entry]         the entry to build, default src/index.js
   --outfile, -o   the outfile, default bundle.js
+  --dir           the out directory, default app/
 ```
 
 ### bin
@@ -136,54 +137,34 @@ Result in package.json:
 "start": "budo index.js:bundle.js --live"
 ```
 
-You can specify `-b` or `--babel` for babelify, and `-a` or `--auto` for installify:
+You can specify `-b` or `--babel` for babelify, and `-a` or `--auto` for installify. Use `--no-dir` to avoid adding a directory to budo, or `--dir public/` for your own site directory. Use `--glslify` to add glslify transform.
 
 ```sh
 # babelify + installify
-quick-budo demo.js:bundle.js -ab
+quick-budo demo.js:bundle.js -b --no-dir
 ```
 
 The above command installs budo and sets up the following:
 
 ```
-"start": "budo demo.js:bundle.js --live -- -t babelify -t [ installify --save ]"
+"start": "budo demo.js:bundle.js --live -- -t babelify"
 ```
 
 If babel is specified, the following `.babelrc` file is also written:
 
 ```js
 {
-  presets: [ "es2015" ]
+  "presets": [
+    [
+      "babel-preset-env", {
+        "useBuiltIns": "usage"
+      }
+    ]
+  ]
 }
 ```
 
 Also see [babelify](#babelify) if you would rather have it listed as a package.json configuration (so you don't need to repeat the flag for `build` scripts).
-
-### babelify
-
-Adds ES2015 to your browserify project:
-
-```sh
-quick-babelify
-```
-
-Installs `babelify` and `babel-preset-es2015`, then writes a `.babelrc` like this:
-
-```js
-{
-  presets: [ "es2015" ]
-}
-```
-
-Also adds babelify as a browserify config to your package.json:
-
-```json
-  "browserify": {
-    "transform": [
-      "babelify"
-    ]
-  }
-```
 
 ### component
 
